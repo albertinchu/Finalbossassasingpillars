@@ -41,7 +41,7 @@ namespace Finalbossassasinpillars
 				if (player.TeamRole.Role == Role.SCP_173)
 				{
 
-					player.SetGhostMode(true, true, false);
+					player.SetGhostMode(true, false, false);
 					yield return 5f;
 					player.SetGhostMode(false);
 				}
@@ -91,10 +91,7 @@ namespace Finalbossassasinpillars
 
 		public void OnSetRole(PlayerSetRoleEvent ev)
 		{
-			if (ev.Player.TeamRole.Role == Role.SCP_173)
-			{
-				Peanutpassive.Add(ev.Player.PlayerId, false);
-			}
+			
 			if ((ev.Player.TeamRole.Role == Role.FACILITY_GUARD))
 			{
 				ev.Player.ChangeRole(Role.CLASSD);
@@ -132,11 +129,16 @@ namespace Finalbossassasinpillars
 		{
 		   if(ev.Player.TeamRole.Role == Role.SCP_173)
 			{
-				Jugadores[ev.Player.SteamId] = (Jugadores[ev.Player.SteamId] + ev.Damage);
+				Jugadores[ev.Attacker.SteamId] = (Jugadores[ev.Attacker.SteamId] + ev.Damage);
+				if (!Peanutpassive.ContainsKey(ev.Player.PlayerId))
+				{
+					Peanutpassive.Add(ev.Player.PlayerId, false);
+				}
 				if((ev.Player.GetHealth() < 3000)&&(Peanutpassive[ev.Player.PlayerId] != true))
 				{
-					Peanutpassive[ev.Player.PlayerId] = true;
 					Timing.Run(Peanutpass(ev.Player));
+					Peanutpassive[ev.Player.PlayerId] = true;
+					
 				}
 			}
 		}
@@ -167,7 +169,7 @@ namespace Finalbossassasinpillars
 
 		public void OnShoot(PlayerShootEvent ev)
 		{
-			if ((ev.Player.TeamRole.Team != Team.SCP)&&(Jugadores.ContainsKey(ev.Player.SteamId)))
+			if ((ev.Player.TeamRole.Team != Team.SCP)&&(!Jugadores.ContainsKey(ev.Player.SteamId)))
 			{
 				Jugadores.Add(ev.Player.SteamId, 0);
 			}
