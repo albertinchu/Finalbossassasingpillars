@@ -6,7 +6,7 @@ namespace Finalbossassasinpillars
     [PluginDetails(
         author = "Albertinchu",
         name = "Finalbossassasinpillars",
-        description = "un 096 con 40000 de vida, muchos jugadores...",
+        description = "4 SCPS 173 con 18000 de vida aproximadamente, muchos jugadores...",
         id = "albertinchu.gamemode.Finalbossassasinpillars",
         version = "1.0.0",
         SmodMajor = 3,
