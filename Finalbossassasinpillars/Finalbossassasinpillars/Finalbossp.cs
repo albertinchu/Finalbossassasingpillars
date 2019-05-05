@@ -5,9 +5,9 @@ namespace Finalbossassasinpillars
 {
     [PluginDetails(
         author = "Albertinchu",
-        name = "Finalboss096",
+        name = "Finalbossassasinpillars",
         description = "un 096 con 40000 de vida, muchos jugadores...",
-        id = "albertinchu.gamemode.Finalboss096",
+        id = "albertinchu.gamemode.Finalbossassasinpillars",
         version = "1.0.0",
         SmodMajor = 3,
         SmodMinor = 0,
